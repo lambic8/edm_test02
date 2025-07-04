@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDM学習アプリ - フルソング再生対応版</title>
+    
+    <link rel="stylesheet" href="styles-core.css">
+    <link rel="stylesheet" href="styles-components.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="course-data.js"></script>
+    <script src="course-steps.js"></script>
+    <script src="courses.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>🎵 EDM学習アプリ</h1>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 5%"></div>
+            </div>
+            <div class="progress-text">
+                <span>進捗</span>
+                <span id="progressText">ステップ 1/20 (5%)</span>
+            </div>
+        </section>
+
+        <section class="phase-indicator" id="phaseIndicator">
+            <div class="phase-item active" data-phase="1">
+                <div class="phase-label">Phase 1</div>
+                <div class="phase-steps">基礎リズム</div>
+            </div>
+            <div class="phase-item upcoming" data-phase="2">
+                <div class="phase-label">Phase 2</div>
+                <div class="phase-steps">エネルギー制御</div>
+            </div>
+            <div class="phase-item upcoming" data-phase="3">
+                <div class="phase-label">Phase 3</div>
+                <div class="phase-steps">メロディ・ハーモニー</div>
+            </div>
+            <div class="phase-item upcoming" data-phase="4">
+                <div class="phase-label">Phase 4</div>
+                <div class="phase-steps">感情表現</div>
+            </div>
+            <div class="phase-item upcoming" data-phase="5">
+                <div class="phase-label">Phase 5</div>
+                <div class="phase-steps">完成・統合</div>
+            </div>
+        </section>
+
+        <section class="section-display">
+            <h3>セクション切り替え</h3>
+            <div class="section-timeline">
+                <div class="section-item active" data-section="intro">
+                    <div class="section-label">イントロ</div>
+                    <div class="section-bars">8小節</div>
+                </div>
+                <div class="section-item" data-section="preBuildup">
+                    <div class="section-label">プレビルドアップ</div>
+                    <div class="section-bars">1小節</div>
+                </div>
+                <div class="section-item" data-section="buildup">
+                    <div class="section-label">ビルドアップ</div>
+                    <div class="section-bars">8小節</div>
+                </div>
+                <div class="section-item" data-section="preDrop">
+                    <div class="section-label">プレドロップ</div>
+                    <div class="section-bars">1小節</div>
+                </div>
+                <div class="section-item" data-section="drop">
+                    <div class="section-label">ドロップ</div>
+                    <div class="section-bars">16小節</div>
+                </div>
+                <div class="section-item" data-section="preBreakdown">
+                    <div class="section-label">プレブレイクダウン</div>
+                    <div class="section-bars">1小節</div>
+                </div>
+                <div class="section-item" data-section="breakdown">
+                    <div class="section-label">ブレイクダウン</div>
+                    <div class="section-bars">8小節</div>
+                </div>
+                <div class="section-item" data-section="preOutro">
+                    <div class="section-label">プレアウトロ</div>
+                    <div class="section-bars">1小節</div>
+                </div>
+                <div class="section-item" data-section="outro">
+                    <div class="section-label">アウトロ</div>
+                    <div class="section-bars">8小節</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="controls">
+            <div class="control-left">
+                <button id="playBtn" class="btn btn-primary">
+                    <span>▶️</span> 再生
+                </button>
+                <button id="stopBtn" class="btn btn-secondary">
+                    <span>⏹️</span> 停止
+                </button>
+                <button id="playFullSongBtn" class="btn btn-success">
+                    <span>🎵</span> フルソング再生
+                </button>
+            </div>
+            
+            <div class="control-center">
+                <div class="bpm-display">
+                    <label>BPM:</label>
+                    <span id="bpmValue">128</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="sequencer-area" id="sequencerArea">
+            <!-- 動的に生成される -->
+        </section>
+    </main>
+
+    <div class="floating-guide-panel" id="floatingGuidePanel">
+        <button class="guide-minimize-btn" id="guideMinimizeBtn" title="ガイドを最小化">
+            <span id="minimizeIcon">▼</span>
+        </button>
+        
+        <div class="floating-guide-content">
+            <h3 class="guide-step-title" id="guideStepTitle">
+                ステップ 1: イントロ - キックの基礎
+            </h3>
+            
+            <p class="guide-description" id="guideDescription">
+                EDMの基本となる4つ打ちキックパターンを作成しましょう。1, 5, 9, 13拍目をクリックして、安定したリズムを作ってください。
+            </p>
+            
+            <div class="guide-actions">
+                <button class="guide-btn guide-btn-hint" id="guideHintBtn">
+                    <span>💡</span> ヒント
+                </button>
+                <button class="guide-btn guide-btn-check" id="guideCheckBtn">
+                    <span>✓</span> パターンチェック
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hint-modal" id="hintModal">
+        <div class="hint-modal-content">
+            <div class="hint-modal-header">
+                <h4 class="hint-modal-title">💡 学習のヒント</h4>
+                <button class="hint-close-btn" id="hintCloseBtn" title="ヒントを閉じる">
+                    <span>×</span>
+                </button>
+            </div>
+            <div class="hint-modal-body" id="hintModalBody">
+                4つ打ちキックはEDMの心臓部です。1, 5, 9, 13拍目の規則正しいパターンがダンスフロアを支配します。
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h3>🎉 ステップ完了！</h3>
+            <p id="successMessage">パターンが正しく作成されました！</p>
+            <div class="modal-actions">
+                <button id="continueBtn" class="btn btn-primary">次のステップへ</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>🎵 EDM学習アプリ</h2>
+            <p>音響システムを初期化中...</p>
+            <div class="loading-progress">
+                <div class="loading-bar">
+                    <div class="loading-fill" id="loadingFill"></div>
+                </div>
+                <span id="loadingPercent">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="courses.js"></script>
+    <script src="app-core.js"></script>
+    <script src="app-ui.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const loadingFill = document.getElementById('loadingFill');
+            const loadingPercent = document.getElementById('loadingPercent');
+            
+            let progress = 0;
+            const loadingInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(loadingInterval);
+                    
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+                
+                loadingFill.style.width = progress + '%';
+                loadingPercent.textContent = Math.round(progress) + '%';
+            }, 100);
+
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey || e.metaKey) {
+                    switch(e.key) {
+                        case ' ':
+                            e.preventDefault();
+                            const playBtn = document.getElementById('playBtn');
+                            if (playBtn) playBtn.click();
+                            break;
+                        case 'Enter':
+                            e.preventDefault();
+                            const checkBtn = document.getElementById('guideCheckBtn');
+                            if (checkBtn) checkBtn.click();
+                            break;
+                        case 'h':
+                            e.preventDefault();
+                            const hintBtn = document.getElementById('guideHintBtn');
+                            if (hintBtn) hintBtn.click();
+                            break;
+                        case 'f':
+                            e.preventDefault();
+                            const fullSongBtn = document.getElementById('playFullSongBtn');
+                            if (fullSongBtn) fullSongBtn.click();
+                            break;
+                    }
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                }
+            });
+        });
+
+        window.debugEDM = () => {
+            if (window.edmCore && !window.edmCore.isDestroyed) {
+                console.log('🐛 Debug Info:', window.edmCore.getDebugInfo());
+            } else {
+                console.log('❌ App not initialized or destroyed');
+            }
+        };
+
+        window.forceCleanup = () => {
+            if (window.edmCore) {
+                window.edmCore.destroy();
+                console.log('🧹 Force cleanup completed');
+            }
+        };
+    </script>
+</body>
+</html>
