@@ -1,4 +1,4 @@
-/* EDM学習アプリ - コアスタイル（最適化版） */
+/* EDM学習アプリ - コアスタイル（コントロール領域最適化版） */
 
 :root {
     --color-primary: #3b82f6;
@@ -330,26 +330,26 @@ body {
     margin-top: 0.2rem;
 }
 
+/* 🆕 コントロール領域最適化 */
 .controls {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background: var(--bg-tertiary);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     border-radius: var(--border-radius-lg);
     margin-bottom: var(--spacing-lg);
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
     border: 1px solid var(--border-primary);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.control-left {
-    display: flex;
-    gap: var(--spacing-md);
-}
-
-.control-center {
+.control-group {
     display: flex;
     align-items: center;
+    gap: var(--spacing-md);
 }
 
 .bpm-display {
@@ -359,7 +359,9 @@ body {
     background: rgba(59, 130, 246, 0.1);
     border: 1px solid var(--color-primary);
     border-radius: var(--border-radius-md);
-    padding: 0.5rem var(--spacing-md);
+    padding: 0.6rem var(--spacing-md);
+    min-width: 100px;
+    justify-content: center;
 }
 
 .bpm-display label {
@@ -371,12 +373,11 @@ body {
 .bpm-display span {
     color: var(--text-accent);
     font-weight: bold;
-    min-width: 40px;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 1.2rem;
     border: none;
     border-radius: var(--border-radius-md);
     font-size: 0.9rem;
@@ -389,6 +390,8 @@ body {
     text-decoration: none;
     background: transparent;
     outline: none;
+    min-width: 140px;
+    justify-content: center;
 }
 
 .btn:disabled {
@@ -458,6 +461,7 @@ body {
 .btn-small {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: 0.8rem;
+    min-width: auto;
 }
 
 .step-navigation {
@@ -627,20 +631,35 @@ body {
         padding: 0.75rem;
     }
     
+    /* 🆕 スマホ用コントロール最適化 */
     .controls {
         flex-direction: column;
         gap: var(--spacing-md);
-        text-align: center;
+        padding: var(--spacing-md);
+        max-width: 100%;
     }
     
-    .control-left {
+    .control-group {
         flex-direction: column;
         gap: var(--spacing-sm);
         width: 100%;
     }
     
-    .control-center {
-        justify-content: center;
+    .btn {
+        width: 100%;
+        min-width: auto;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .bpm-display {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .bpm-display span {
+        font-size: 1.3rem;
     }
     
     .step-navigation {
@@ -708,14 +727,16 @@ body {
     }
     
     .btn {
-        padding: 0.6rem var(--spacing-md);
-        font-size: 0.8rem;
+        padding: 0.9rem;
+        font-size: 0.9rem;
     }
     
     .bpm-display {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-        text-align: center;
+        padding: 0.9rem;
+    }
+    
+    .bpm-display span {
+        font-size: 1.2rem;
     }
 }
 

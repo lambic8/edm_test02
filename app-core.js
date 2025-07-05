@@ -84,7 +84,7 @@ class EDMCore {
     
     cacheElements() {
         const ids = [
-            'playBtn', 'stopBtn', 'bpmValue',
+            'playBtn', 'bpmValue',
             'continueBtn',
             'sequencerArea',
             'successModal', 'successMessage', 'playFullSongBtn'
@@ -864,7 +864,6 @@ class EDMCore {
     
     setupEventListeners() {
         this.bindElement('playBtn', 'click', () => this.togglePlayback());
-        this.bindElement('stopBtn', 'click', () => this.stopPlayback());
         this.bindElement('playFullSongBtn', 'click', () => this.toggleFullSongPlayback());
         
         window.addEventListener('beforeunload', this.handleBeforeUnload);

@@ -1,12 +1,12 @@
 /* EDM学習アプリ - コンポーネントスタイル（横はみ出し修正版） */
 
 :root {
-    --sequencer-grid-gap: 2px;
-    --step-button-size: 35px;
-    --note-button-height: 22px;
+    --sequencer-grid-gap: 3px;
+    --step-button-size: 44px;
+    --note-button-height: 32px;
     --matrix-cell-size: 60px;
-    --track-label-width: 50px;
-    --piano-label-width: 40px;
+    --track-label-width: 60px;
+    --piano-label-width: 50px;
     
     --floating-guide-height: 140px;
     --floating-guide-bg: rgba(15, 23, 42, 0.95);
@@ -31,37 +31,37 @@
 
 @media (max-width: 768px) {
     :root {
-        --step-button-size: 28px;
-        --note-button-height: 18px;
-        --matrix-cell-size: 40px;
-        --track-label-width: 40px;
-        --piano-label-width: 30px;
+        --step-button-size: 42px;
+        --note-button-height: 30px;
+        --matrix-cell-size: 50px;
+        --track-label-width: 55px;
+        --piano-label-width: 45px;
         --floating-guide-height: 120px;
-        --sequencer-grid-gap: 1px;
+        --sequencer-grid-gap: 2px;
     }
 }
 
 @media (max-width: 667px) {
     :root {
-        --step-button-size: 24px;
-        --note-button-height: 16px;
-        --matrix-cell-size: 35px;
-        --track-label-width: 36px;
-        --piano-label-width: 26px;
+        --step-button-size: 40px;
+        --note-button-height: 28px;
+        --matrix-cell-size: 45px;
+        --track-label-width: 50px;
+        --piano-label-width: 40px;
         --floating-guide-height: 160px;
-        --sequencer-grid-gap: 1px;
+        --sequencer-grid-gap: 2px;
     }
 }
 
 @media (max-width: 480px) {
     :root {
-        --step-button-size: 20px;
-        --note-button-height: 14px;
-        --matrix-cell-size: 30px;
-        --track-label-width: 32px;
-        --piano-label-width: 22px;
+        --step-button-size: 38px;
+        --note-button-height: 26px;
+        --matrix-cell-size: 40px;
+        --track-label-width: 45px;
+        --piano-label-width: 35px;
         --floating-guide-height: 180px;
-        --sequencer-grid-gap: 1px;
+        --sequencer-grid-gap: 2px;
     }
 }
 
@@ -422,13 +422,16 @@
     color: var(--text-primary);
     width: var(--step-button-size);
     height: var(--step-button-size);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     flex-shrink: 0; /* 縮小しない */
+    min-width: var(--step-button-size);
+    min-height: var(--step-button-size);
 }
 
 .step-button:hover {
     background: var(--border-secondary);
     border-color: var(--text-muted);
+    transform: scale(1.05);
 }
 
 .step-button.active {
@@ -461,13 +464,16 @@
     color: var(--text-primary);
     width: var(--step-button-size);
     height: var(--note-button-height);
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     flex-shrink: 0; /* 縮小しない */
+    min-width: var(--step-button-size);
+    min-height: var(--note-button-height);
 }
 
 .note-button:hover {
     background: var(--border-secondary);
     border-color: var(--text-muted);
+    transform: scale(1.05);
 }
 
 .note-button.active {
