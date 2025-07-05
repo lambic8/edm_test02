@@ -31,11 +31,11 @@
 
 @media (max-width: 768px) {
     :root {
-        --step-button-size: 44px;
-        --note-button-height: 32px;
-        --matrix-cell-size: 50px;
-        --track-label-width: 60px;
-        --piano-label-width: 50px;
+        --step-button-size: 29px; /* 44px × 2/3 ≈ 29px */
+        --note-button-height: 21px; /* 32px × 2/3 ≈ 21px */
+        --matrix-cell-size: 33px; /* 50px × 2/3 ≈ 33px */
+        --track-label-width: 40px; /* 60px × 2/3 = 40px */
+        --piano-label-width: 33px; /* 50px × 2/3 ≈ 33px */
         --floating-guide-height: 120px;
         --sequencer-grid-gap: 2px;
     }
@@ -43,11 +43,11 @@
 
 @media (max-width: 667px) {
     :root {
-        --step-button-size: 42px;
-        --note-button-height: 30px;
-        --matrix-cell-size: 45px;
-        --track-label-width: 55px;
-        --piano-label-width: 45px;
+        --step-button-size: 28px; /* 42px × 2/3 = 28px */
+        --note-button-height: 20px; /* 30px × 2/3 = 20px */
+        --matrix-cell-size: 30px; /* 45px × 2/3 = 30px */
+        --track-label-width: 37px; /* 55px × 2/3 ≈ 37px */
+        --piano-label-width: 30px; /* 45px × 2/3 = 30px */
         --floating-guide-height: 160px;
         --sequencer-grid-gap: 2px;
     }
@@ -55,13 +55,13 @@
 
 @media (max-width: 480px) {
     :root {
-        --step-button-size: 40px;
-        --note-button-height: 28px;
-        --matrix-cell-size: 40px;
-        --track-label-width: 50px;
-        --piano-label-width: 40px;
+        --step-button-size: 27px; /* 40px × 2/3 ≈ 27px */
+        --note-button-height: 19px; /* 28px × 2/3 ≈ 19px */
+        --matrix-cell-size: 27px; /* 40px × 2/3 ≈ 27px */
+        --track-label-width: 33px; /* 50px × 2/3 ≈ 33px */
+        --piano-label-width: 27px; /* 40px × 2/3 ≈ 27px */
         --floating-guide-height: 180px;
-        --sequencer-grid-gap: 2px;
+        --sequencer-grid-gap: 1px;
     }
 }
 
@@ -373,41 +373,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0; /* 縮小しない */
+    flex-shrink: 0;
 }
 
 .step-number.beat-start {
     background: var(--text-muted);
     border-left: 3px solid var(--color-primary);
-}
-
-.step-number[data-step="10"]::after { content: "0"; }
-.step-number[data-step="11"]::after { content: "1"; }
-.step-number[data-step="12"]::after { content: "2"; }
-.step-number[data-step="13"]::after { content: "3"; }
-.step-number[data-step="14"]::after { content: "4"; }
-.step-number[data-step="15"]::after { content: "5"; }
-.step-number[data-step="16"]::after { content: "6"; }
-
-.step-number[data-step="10"],
-.step-number[data-step="11"],
-.step-number[data-step="12"],
-.step-number[data-step="13"],
-.step-number[data-step="14"],
-.step-number[data-step="15"],
-.step-number[data-step="16"] {
-    font-size: 0;
-}
-
-.step-number[data-step="10"]::after,
-.step-number[data-step="11"]::after,
-.step-number[data-step="12"]::after,
-.step-number[data-step="13"]::after,
-.step-number[data-step="14"]::after,
-.step-number[data-step="15"]::after,
-.step-number[data-step="16"]::after {
-    font-size: 0.65rem;
-    font-weight: bold;
 }
 
 .step-button {
@@ -675,7 +646,7 @@
     flex-shrink: 0; /* 縮小しない */
 }
 
-/* スマホでの表示改善（元のサイズベース） */
+/* スマホでの表示改善（2/3サイズ調整） */
 @media (max-width: 768px) {
     .guide-actions {
         flex-direction: column;
@@ -700,21 +671,29 @@
     }
     
     .drum-icon {
-        font-size: 0.9rem;
+        font-size: 0.7rem; /* 2/3サイズ */
     }
     
     .drum-name {
-        font-size: 0.55rem;
+        font-size: 0.45rem; /* 2/3サイズ */
     }
     
     .note-label {
-        font-size: 0.55rem;
+        font-size: 0.45rem; /* 2/3サイズ */
         padding: 0.05rem var(--spacing-xs);
     }
     
     .step-number {
-        font-size: 0.6rem;
-        height: 20px;
+        font-size: 0.5rem; /* 2/3サイズ */
+        height: 15px; /* 2/3サイズ */
+    }
+    
+    .step-button {
+        font-size: 0.6rem; /* 2/3サイズ */
+    }
+    
+    .note-button {
+        font-size: 0.5rem; /* 2/3サイズ */
     }
     
     /* スマホ用の横スクロール改善 */
@@ -747,55 +726,55 @@
     }
     
     .drum-icon {
-        font-size: 0.8rem;
+        font-size: 0.65rem;
     }
     
     .drum-name {
-        font-size: 0.5rem;
+        font-size: 0.4rem;
     }
     
     .note-label {
-        font-size: 0.5rem;
+        font-size: 0.4rem;
     }
     
     .step-number {
-        font-size: 0.55rem;
-        height: 18px;
+        font-size: 0.45rem;
+        height: 14px;
     }
     
     .step-button {
-        font-size: 0.75rem;
+        font-size: 0.55rem;
     }
     
     .note-button {
-        font-size: 0.65rem;
+        font-size: 0.45rem;
     }
 }
 
 @media (max-width: 480px) {
     .drum-icon {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
     
     .drum-name {
-        font-size: 0.45rem;
+        font-size: 0.35rem;
     }
     
     .note-label {
-        font-size: 0.45rem;
+        font-size: 0.35rem;
     }
     
     .step-number {
-        font-size: 0.5rem;
-        height: 16px;
+        font-size: 0.4rem;
+        height: 13px;
     }
     
     .step-button {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
     }
     
     .note-button {
-        font-size: 0.6rem;
+        font-size: 0.4rem;
     }
     
     /* 極小サイズでの横スクロール最適化 */
