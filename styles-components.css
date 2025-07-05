@@ -1,4 +1,4 @@
-/* EDM学習アプリ - コンポーネントスタイル（スマホ対応版） */
+/* EDM学習アプリ - コンポーネントスタイル（横はみ出し修正版） */
 
 :root {
     --sequencer-grid-gap: 2px;
@@ -31,11 +31,11 @@
 
 @media (max-width: 768px) {
     :root {
-        --step-button-size: 30px;
+        --step-button-size: 28px;
         --note-button-height: 18px;
-        --matrix-cell-size: 45px;
-        --track-label-width: 42px;
-        --piano-label-width: 32px;
+        --matrix-cell-size: 40px;
+        --track-label-width: 40px;
+        --piano-label-width: 30px;
         --floating-guide-height: 120px;
         --sequencer-grid-gap: 1px;
     }
@@ -43,12 +43,24 @@
 
 @media (max-width: 667px) {
     :root {
-        --step-button-size: 28px;
+        --step-button-size: 24px;
         --note-button-height: 16px;
-        --matrix-cell-size: 40px;
-        --track-label-width: 38px;
-        --piano-label-width: 28px;
+        --matrix-cell-size: 35px;
+        --track-label-width: 36px;
+        --piano-label-width: 26px;
         --floating-guide-height: 160px;
+        --sequencer-grid-gap: 1px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --step-button-size: 20px;
+        --note-button-height: 14px;
+        --matrix-cell-size: 30px;
+        --track-label-width: 32px;
+        --piano-label-width: 22px;
+        --floating-guide-height: 180px;
         --sequencer-grid-gap: 1px;
     }
 }
@@ -240,6 +252,7 @@
     margin-bottom: var(--spacing-lg);
     border: 1px solid var(--border-primary);
     animation: slideIn var(--transition-slow) ease-out;
+    overflow-x: auto; /* 横スクロール対応 */
 }
 
 .drum-sequencer {
@@ -247,6 +260,8 @@
     border-radius: var(--border-radius-md);
     padding: var(--spacing-md);
     border: 2px solid var(--color-secondary);
+    min-width: fit-content; /* 最小幅を内容に合わせる */
+    overflow-x: auto; /* 横スクロール対応 */
 }
 
 .drum-track {
@@ -255,6 +270,7 @@
     align-items: center;
     grid-template-columns: var(--track-label-width) repeat(16, var(--step-button-size));
     margin-bottom: var(--spacing-sm);
+    min-width: fit-content; /* 最小幅を内容に合わせる */
 }
 
 .drum-label {
@@ -271,6 +287,7 @@
     background: linear-gradient(135deg, var(--color-secondary), var(--color-primary-dark));
     text-align: center;
     line-height: 1.1;
+    flex-shrink: 0; /* 縮小しない */
 }
 
 .drum-icon {
@@ -291,12 +308,17 @@
     border: 2px solid #1e40af;
     max-height: 350px;
     overflow-y: auto;
+    overflow-x: auto; /* 横スクロール対応 */
+    min-width: fit-content; /* 最小幅を内容に合わせる */
 }
 
 .piano-roll.bass-track { border-color: var(--color-bass); }
 .piano-roll.melody-track { border-color: var(--color-melody); }
 .piano-roll.chord-track { border-color: var(--color-chord); }
 .piano-roll.pad-track { border-color: var(--color-pad); }
+.piano-roll.piano-track { border-color: #8b4513; }
+.piano-roll.pluck-track { border-color: #daa520; }
+.piano-roll.strings-track { border-color: #00cec9; }
 
 .note-row {
     display: grid;
@@ -304,6 +326,7 @@
     align-items: center;
     grid-template-columns: var(--piano-label-width) repeat(16, var(--step-button-size));
     margin-bottom: 2px;
+    min-width: fit-content; /* 最小幅を内容に合わせる */
 }
 
 .note-label {
@@ -316,6 +339,7 @@
     text-align: center;
     width: var(--piano-label-width);
     font-weight: bold;
+    flex-shrink: 0; /* 縮小しない */
 }
 
 .step-numbers {
@@ -324,6 +348,7 @@
     align-items: center;
     grid-template-columns: var(--track-label-width) repeat(16, var(--step-button-size));
     margin-bottom: var(--spacing-sm);
+    min-width: fit-content; /* 最小幅を内容に合わせる */
 }
 
 .piano-step-numbers {
@@ -332,6 +357,7 @@
     align-items: center;
     grid-template-columns: var(--piano-label-width) repeat(16, var(--step-button-size));
     margin-bottom: var(--spacing-sm);
+    min-width: fit-content; /* 最小幅を内容に合わせる */
 }
 
 .step-number {
@@ -347,6 +373,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; /* 縮小しない */
 }
 
 .step-number.beat-start {
@@ -396,6 +423,7 @@
     width: var(--step-button-size);
     height: var(--step-button-size);
     font-size: 0.7rem;
+    flex-shrink: 0; /* 縮小しない */
 }
 
 .step-button:hover {
@@ -434,6 +462,7 @@
     width: var(--step-button-size);
     height: var(--note-button-height);
     font-size: 0.65rem;
+    flex-shrink: 0; /* 縮小しない */
 }
 
 .note-button:hover {
@@ -641,8 +670,10 @@
 .note-label-placeholder {
     width: var(--track-label-width);
     height: 30px;
+    flex-shrink: 0; /* 縮小しない */
 }
 
+/* スマホでの表示改善 */
 @media (max-width: 768px) {
     .guide-actions {
         flex-direction: column;
@@ -667,21 +698,31 @@
     }
     
     .drum-icon {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
     
     .drum-name {
-        font-size: 0.55rem;
+        font-size: 0.5rem;
     }
     
     .note-label {
-        font-size: 0.55rem;
+        font-size: 0.5rem;
         padding: 0.05rem var(--spacing-xs);
     }
     
     .step-number {
-        font-size: 0.6rem;
-        height: 20px;
+        font-size: 0.55rem;
+        height: 18px;
+    }
+    
+    /* スマホ用の横スクロール改善 */
+    .sequencer-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .drum-sequencer,
+    .piano-roll {
+        padding: var(--spacing-sm);
     }
 }
 
@@ -704,28 +745,69 @@
     }
     
     .drum-icon {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
     
     .drum-name {
-        font-size: 0.5rem;
+        font-size: 0.45rem;
     }
     
     .note-label {
-        font-size: 0.5rem;
+        font-size: 0.45rem;
     }
     
     .step-number {
-        font-size: 0.55rem;
-        height: 18px;
+        font-size: 0.5rem;
+        height: 16px;
     }
     
     .step-button {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
     
     .note-button {
+        font-size: 0.55rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .drum-icon {
         font-size: 0.6rem;
+    }
+    
+    .drum-name {
+        font-size: 0.4rem;
+    }
+    
+    .note-label {
+        font-size: 0.4rem;
+    }
+    
+    .step-number {
+        font-size: 0.45rem;
+        height: 14px;
+    }
+    
+    .step-button {
+        font-size: 0.55rem;
+    }
+    
+    .note-button {
+        font-size: 0.5rem;
+    }
+    
+    /* 極小サイズでの横スクロール最適化 */
+    .sequencer-container {
+        padding: 0.25rem;
+    }
+    
+    .drum-sequencer,
+    .piano-roll {
+        padding: 0.25rem;
+    }
+    
+    .floating-guide-panel {
+        padding: 0.25rem 0.5rem;
     }
 }
 
@@ -749,5 +831,59 @@
     
     :root {
         --floating-guide-height: 100px;
+    }
+}
+
+/* スクロールバーのカスタマイズ */
+.sequencer-container::-webkit-scrollbar,
+.drum-sequencer::-webkit-scrollbar,
+.piano-roll::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+.sequencer-container::-webkit-scrollbar-track,
+.drum-sequencer::-webkit-scrollbar-track,
+.piano-roll::-webkit-scrollbar-track {
+    background: var(--bg-quaternary);
+    border-radius: 4px;
+}
+
+.sequencer-container::-webkit-scrollbar-thumb,
+.drum-sequencer::-webkit-scrollbar-thumb,
+.piano-roll::-webkit-scrollbar-thumb {
+    background: var(--border-secondary);
+    border-radius: 4px;
+}
+
+.sequencer-container::-webkit-scrollbar-thumb:hover,
+.drum-sequencer::-webkit-scrollbar-thumb:hover,
+.piano-roll::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* Firefox用スクロールバー */
+.sequencer-container,
+.drum-sequencer,
+.piano-roll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-secondary) var(--bg-quaternary);
+}
+
+@media print {
+    .header, .controls, .step-navigation, .floating-guide-panel {
+        display: none !important;
+    }
+    
+    .main-container {
+        background: white !important;
+        color: black !important;
+        padding: var(--spacing-md) !important;
+    }
+    
+    .step-info, .container {
+        background: white !important;
+        border: 2px solid black !important;
+        page-break-inside: avoid;
     }
 }

@@ -42,8 +42,8 @@ window.EDMCourseData = {
             explanation: 'プレビルドアップでは美しいピアノアルペジオ、ストリングスハーモニー、キック、ベースラインをすべて継承し、プラックシンセを追加してAvicii風の躍動感を構築します。'
         },
         'preBuildup-buildup': {
-            inherit: ['piano', 'strings', 'kick', 'bass', 'pluck', 'uplifter'],
-            explanation: 'ビルドアップではプレビルドアップの全要素（ピアノ、ストリングス、キック、ベース、プラック）を継承し、スネア・ハイハット・メロディ・クラップを段階的に追加してエネルギーを蓄積します。'
+            inherit: ['piano', 'strings', 'kick', 'bass', 'pluck'],
+            explanation: 'ビルドアップではプレビルドアップの全要素（ピアノ、ストリングス、キック、ベース、プラック）を継承し、スネア・ハイハット・メロディ・クラップ・アップリフターを段階的に追加してエネルギーを蓄積します。'
         },
         'buildup-preDrop': {
             inherit: ['kick', 'snare', 'hihat', 'clap', 'bass', 'pluck'],

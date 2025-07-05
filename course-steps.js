@@ -43,7 +43,7 @@ window.EDMCourseSteps = {
         // Phase 3: Rhythm Development (ステップ 6-8)
         {
             step: 6, section: "buildup", mode: "sequencer",
-            title: "ステップ 6: ビルドアップ - リズムセクション強化",
+            title: "ステップ 6: ビルドアップ - リズムセクション強化", 
             description: "プレビルドアップから継承：ピアノ、ストリングス、キック、ベース、プラックがすべて維持されます。ここでリズムセクションを強化します。5, 13拍目にスネアと、3, 7, 11, 15拍目にハイハットを追加して、完全なEDMリズムセクションを構築しましょう。",
             tracks: ["piano", "strings", "kick", "bass", "pluck", "snare", "hihat"],
             validation: { type: "multiple", patterns: [
