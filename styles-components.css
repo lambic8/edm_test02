@@ -31,37 +31,37 @@
 
 @media (max-width: 768px) {
     :root {
-        --step-button-size: 42px;
-        --note-button-height: 30px;
-        --matrix-cell-size: 50px;
-        --track-label-width: 55px;
-        --piano-label-width: 45px;
+        --step-button-size: 58px; /* 42px × 1.4 ≈ 58px */
+        --note-button-height: 42px; /* 30px × 1.4 = 42px */
+        --matrix-cell-size: 70px;
+        --track-label-width: 75px; /* ラベル幅も調整 */
+        --piano-label-width: 60px;
         --floating-guide-height: 120px;
-        --sequencer-grid-gap: 2px;
+        --sequencer-grid-gap: 3px;
     }
 }
 
 @media (max-width: 667px) {
     :root {
-        --step-button-size: 40px;
-        --note-button-height: 28px;
-        --matrix-cell-size: 45px;
-        --track-label-width: 50px;
-        --piano-label-width: 40px;
+        --step-button-size: 56px; /* 40px × 1.4 = 56px */
+        --note-button-height: 40px; /* 28px × 1.4 ≈ 40px */
+        --matrix-cell-size: 65px;
+        --track-label-width: 70px;
+        --piano-label-width: 55px;
         --floating-guide-height: 160px;
-        --sequencer-grid-gap: 2px;
+        --sequencer-grid-gap: 3px;
     }
 }
 
 @media (max-width: 480px) {
     :root {
-        --step-button-size: 38px;
-        --note-button-height: 26px;
-        --matrix-cell-size: 40px;
-        --track-label-width: 45px;
-        --piano-label-width: 35px;
+        --step-button-size: 53px; /* 38px × 1.4 ≈ 53px */
+        --note-button-height: 36px; /* 26px × 1.4 ≈ 36px */
+        --matrix-cell-size: 60px;
+        --track-label-width: 65px;
+        --piano-label-width: 50px;
         --floating-guide-height: 180px;
-        --sequencer-grid-gap: 2px;
+        --sequencer-grid-gap: 3px;
     }
 }
 
@@ -288,6 +288,7 @@
     text-align: center;
     line-height: 1.1;
     flex-shrink: 0; /* 縮小しない */
+    min-width: var(--track-label-width);
 }
 
 .drum-icon {
@@ -340,6 +341,7 @@
     width: var(--piano-label-width);
     font-weight: bold;
     flex-shrink: 0; /* 縮小しない */
+    min-width: var(--piano-label-width);
 }
 
 .step-numbers {
@@ -679,7 +681,7 @@
     flex-shrink: 0; /* 縮小しない */
 }
 
-/* スマホでの表示改善 */
+/* スマホでの表示改善（大きいボタンサイズ対応） */
 @media (max-width: 768px) {
     .guide-actions {
         flex-direction: column;
@@ -704,21 +706,21 @@
     }
     
     .drum-icon {
-        font-size: 0.8rem;
+        font-size: 1.1rem; /* スマホで少し大きく */
     }
     
     .drum-name {
-        font-size: 0.5rem;
+        font-size: 0.65rem; /* スマホで少し大きく */
     }
     
     .note-label {
-        font-size: 0.5rem;
-        padding: 0.05rem var(--spacing-xs);
+        font-size: 0.65rem; /* スマホで少し大きく */
+        padding: 0.15rem var(--spacing-xs);
     }
     
     .step-number {
-        font-size: 0.55rem;
-        height: 18px;
+        font-size: 0.7rem; /* スマホで少し大きく */
+        height: 28px; /* 高さも調整 */
     }
     
     /* スマホ用の横スクロール改善 */
@@ -751,55 +753,55 @@
     }
     
     .drum-icon {
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
     
     .drum-name {
-        font-size: 0.45rem;
-    }
-    
-    .note-label {
-        font-size: 0.45rem;
-    }
-    
-    .step-number {
-        font-size: 0.5rem;
-        height: 16px;
-    }
-    
-    .step-button {
         font-size: 0.6rem;
     }
     
+    .note-label {
+        font-size: 0.6rem;
+    }
+    
+    .step-number {
+        font-size: 0.65rem;
+        height: 26px;
+    }
+    
+    .step-button {
+        font-size: 1rem; /* スマホでフォントサイズ大きく */
+    }
+    
     .note-button {
-        font-size: 0.55rem;
+        font-size: 0.85rem; /* スマホでフォントサイズ大きく */
     }
 }
 
 @media (max-width: 480px) {
     .drum-icon {
-        font-size: 0.6rem;
+        font-size: 0.9rem;
     }
     
     .drum-name {
-        font-size: 0.4rem;
-    }
-    
-    .note-label {
-        font-size: 0.4rem;
-    }
-    
-    .step-number {
-        font-size: 0.45rem;
-        height: 14px;
-    }
-    
-    .step-button {
         font-size: 0.55rem;
     }
     
+    .note-label {
+        font-size: 0.55rem;
+    }
+    
+    .step-number {
+        font-size: 0.6rem;
+        height: 24px;
+    }
+    
+    .step-button {
+        font-size: 0.9rem; /* 小スマホでも読みやすく */
+    }
+    
     .note-button {
-        font-size: 0.5rem;
+        font-size: 0.75rem; /* 小スマホでも読みやすく */
     }
     
     /* 極小サイズでの横スクロール最適化 */
