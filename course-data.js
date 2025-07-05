@@ -38,36 +38,36 @@ window.EDMCourseData = {
     
     inheritanceRules: {
         'intro-preBuildup': {
-            inherit: ['piano', 'strings', 'bass'],
-            explanation: 'プレビルドアップではピアノの美しさを継承し、リズム要素を追加します。'
+            inherit: ['piano', 'strings', 'kick', 'bass'],
+            explanation: 'プレビルドアップでは美しいピアノアルペジオ、ストリングスハーモニー、キック、ベースラインをすべて継承し、プラックシンセを追加してAvicii風の躍動感を構築します。'
         },
         'preBuildup-buildup': {
-            inherit: ['piano', 'strings', 'bass', 'kick', 'uplifter'],
-            explanation: 'ビルドアップではピアノとストリングスの美しさを維持しながら、エネルギーを蓄積します。'
+            inherit: ['piano', 'strings', 'kick', 'bass', 'pluck', 'uplifter'],
+            explanation: 'ビルドアップではプレビルドアップの全要素（ピアノ、ストリングス、キック、ベース、プラック）を継承し、スネア・ハイハット・メロディ・クラップを段階的に追加してエネルギーを蓄積します。'
         },
         'buildup-preDrop': {
             inherit: ['kick', 'snare', 'hihat', 'clap', 'bass', 'pluck'],
-            explanation: 'プレドロップでは最大限のテンションを作り、ドロップへの期待感を演出します。'
+            explanation: 'プレドロップでは最大テンション構築のため、リズム系楽器（キック、スネア、ハイハット、クラップ）、ベース、プラックを継承し、ライザーを追加します。ピアノ・ストリングス・メロディは一時的に除去され、次のドロップでの爆発的効果を演出します。'
         },
         'preDrop-drop': {
             inherit: ['kick', 'snare', 'hihat', 'clap', 'bass', 'pluck'],
-            explanation: 'ドロップではAvicii風の感動的なメロディとハーモニーが爆発します。'
+            explanation: 'ドロップではプレドロップのリズム基盤を継承し、新たに感動的なピアノメロディとコードハーモニーを追加してAvicii風の壮大なクライマックスを実現します。'
         },
         'drop-preBreakdown': {
             inherit: ['piano', 'melody', 'strings', 'sweep'],
-            explanation: 'プレブレイクダウンでは感動的な要素のみを残し、静寂への移行を準備します。'
+            explanation: 'プレブレイクダウンでは感動的移行のため、美しいピアノ、メロディ、ストリングスのみを継承し、スイープエフェクトを追加します。すべてのドラム系楽器（キック、スネア、ハイハット、クラップ）とベース、プラック、コードは除去され、静寂への移行が始まります。'
         },
         'preBreakdown-breakdown': {
             inherit: ['piano', 'strings'],
-            explanation: 'ブレイクダウンでは美しいピアノとストリングスで感情的な表現を行います。'
+            explanation: 'ブレイクダウンでは最も美しい要素のみを継承し、ピアノとストリングスによる感動的なハーモニーを表現します。メロディ、スイープは除去され、純粋な美しさが際立ちます。'
         },
         'breakdown-preOutro': {
             inherit: ['piano'],
-            explanation: 'プレアウトロではピアノソロで終結への準備をします。'
+            explanation: 'プレアウトロでは楽曲の終結準備として、最も核心的なピアノのみを継承します。ストリングスは除去され、シンプルな美学への移行が始まります。'
         },
         'preOutro-outro': {
             inherit: ['piano'],
-            explanation: 'アウトロでは美しいピアノで楽曲を感動的に終結させます。'
+            explanation: 'アウトロでは美しいピアノソロのみを継承し、Avicii風のシンプルで心に残る終結を実現します。楽曲の純粋なエッセンスだけが残ります。'
         }
     },
     
