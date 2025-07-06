@@ -1,4 +1,4 @@
-// EDM学習コース - ステップ定義（Avicii風対応版）
+// EDM学習コース - ステップ定義（Avicii風対応版・18ステップ最適化）
 window.EDMCourseSteps = {
     steps: [
         // Phase 1: Piano Foundation (ステップ 1-4)
@@ -130,41 +130,26 @@ window.EDMCourseSteps = {
         {
             step: 16, section: "breakdown", mode: "sequencer",
             title: "ステップ 16: ブレイクダウン - 感情の深化",
-            description: "ピアノとストリングスのハーモニーを調整して、より深い感情表現を作り出しましょう。Aviciiの「Wake Me Up」のような美しい瞬間を体験してください。",
+            description: "ピアノパターンを発展させ、ストリングスハーモニーを豊かにしましょう。ピアノ：1,3,5,7拍目にD4,F4,A4,C5を配置し、ストリングス：1,5,9,13拍目にF3,A3,C4,F4を配置して、Aviciiの「Wake Me Up」のような美しい瞬間を体験してください。",
             tracks: ["piano", "strings"],
-            validation: { type: "pattern", track: "strings", pattern: ["F3",0,0,0,0,0,0,0,"A3",0,0,0,0,0,0,0] }
+            validation: { type: "multiple", patterns: [
+                { track: "piano", pattern: ["D4",0,"F4",0,"A4",0,"C5",0,0,0,0,0,0,0,0,0] },
+                { track: "strings", pattern: ["F3",0,0,0,"A3",0,0,0,"C4",0,0,0,"F4",0,0,0] }
+            ]}
         },
         
-        // Phase 8: Resolution Preparation (ステップ 17)
+        // Phase 8: Beautiful Outro (ステップ 17-18)
         {
-            step: 17, section: "preOutro", mode: "sequencer",
-            title: "ステップ 17: プレアウトロ - 要素削減",
-            description: "ブレイクダウンから継承：ピアノのみが維持されます。注意：ストリングスは除去され、シンプルな美学への移行が始まります。楽曲の終結に向けて要素をシンプル化します。1, 5拍目にのみC4, G4のピアノを配置して、純粋な美しさを表現しましょう。残りの拍は空白にして静寂の美学を感じてください。",
+            step: 17, section: "outro", mode: "sequencer",
+            title: "ステップ 17: アウトロ - エレガントな終結",
+            description: "ブレイクダウンから継承：美しいピアノのみが維持されます。楽曲の終結に向けて、1, 5, 9拍目にC4, E4, G4のシンプルなトライアドを配置し、残りの拍は空白にして、Avicii特有のエレガントで心に残る終結を作成してください。シンプルな美学の中に深い感動を込めましょう。",
             tracks: ["piano"],
-            validation: { type: "pattern", track: "piano", pattern: ["C4",0,0,0,"G4",0,0,0,0,0,0,0,0,0,0,0] }
-        },
-        
-        // Phase 9: Beautiful Outro (ステップ 18-19)
-        {
-            step: 18, section: "outro", mode: "sequencer",
-            title: "ステップ 18: アウトロ - ピアノソロ",
-            description: "プレアウトロから継承：美しいピアノソロが維持されます。楽曲の核心的要素のみが残り、感動的な終結を迎えます。1, 5拍目にのみC4, G4を配置し、残りの拍は空白にして、Avicii特有のシンプルで心に残る終結を作成してください。",
-            tracks: ["piano"],
-            validation: { type: "pattern", track: "piano", pattern: ["C4",0,0,0,"G4",0,0,0,0,0,0,0,0,0,0,0] }
+            validation: { type: "pattern", track: "piano", pattern: ["C4",0,0,0,"E4",0,0,0,"G4",0,0,0,0,0,0,0] }
         },
         {
-            step: 19, section: "outro", mode: "sequencer",
-            title: "ステップ 19: アウトロ - 感動的余韻",
-            description: "同じピアノパターンを継続して、楽曲に美しい余韻を残しましょう。1, 5拍目にC4, G4を配置し、残りの拍は空白にして、Aviciiの楽曲のように終わった後も心に残る感動を演出してください。",
-            tracks: ["piano"],
-            validation: { type: "pattern", track: "piano", pattern: ["C4",0,0,0,"G4",0,0,0,0,0,0,0,0,0,0,0] }
-        },
-        
-        // Phase 10: Completion (ステップ 20)
-        {
-            step: 20, section: "complete", mode: "preview",
-            title: "ステップ 20: 楽曲完成 - Avicii風感動的な旅路",
-            description: "🎉 おめでとうございます！美しいピアノアルペジオから始まり、感動的なドロップを経て、心に残る美しさで終わるAvicii風楽曲が完成しました。「Levels」「Wake Me Up」「Waiting for Love」と同じDNAを持つ、世界中で愛される音楽を作り上げました！",
+            step: 18, section: "complete", mode: "preview",
+            title: "ステップ 18: 楽曲完成 - Avicii風感動的な旅路",
+            description: "🎉 おめでとうございます！美しいピアノアルペジオから始まり、感動的なドロップを経て、心に残る美しさで終わるAvicii風楽曲が完成しました。「Levels」「Wake Me Up」「Waiting for Love」と同じDNAを持つ、世界中で愛される音楽を作り上げました！フルソング再生ボタンで完成した楽曲を体験し、各セクションを切り替えて自然な移行を確認してみましょう。",
             tracks: ["kick", "snare", "hihat", "clap", "bass", "melody", "chord", "piano", "pluck", "strings", "uplifter", "riser", "sweep"],
             isComplete: true
         }

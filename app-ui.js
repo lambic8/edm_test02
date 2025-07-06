@@ -1,4 +1,4 @@
-// EDM学習アプリ - UI・インタラクション処理（スマホ対応版）
+// EDM学習アプリ - UI・インタラクション処理（スマホ対応版・18ステップ対応）
 class EDMInterface {
     constructor(core) {
         this.core = core;
@@ -86,11 +86,6 @@ class EDMInterface {
                 name: "Break",
                 description: "静寂と美しさで感情を表現。ドラムを取り除き、メロディの美しさを際立たせます。",
                 features: "ドラム除去、アンビエントパッド、情感豊かなメロディ"
-            },
-            preOutro: {
-                name: "PreOut",
-                description: "ブレイクダウンからアウトロへの移行準備。要素をさらにシンプル化します。",
-                features: "要素削減、終結準備、シンプル化"
             },
             outro: {
                 name: "Outro",
@@ -652,7 +647,7 @@ class EDMInterface {
                                 <li><strong>Intro</strong> → <em>PreBuild</em> → <strong>Buildup</strong></li>
                                 <li><strong>Buildup</strong> → <em>PreDrop</em> → <strong>Drop</strong></li>
                                 <li><strong>Drop</strong> → <em>PreBreak</em> → <strong>Break</strong></li>
-                                <li><strong>Break</strong> → <em>PreOut</em> → <strong>Outro</strong></li>
+                                <li><strong>Break</strong> → <strong>Outro</strong></li>
                             </ul>
                             <p>プレセクション（1小節）が各セクション間の自然な移行を実現しています。</p>
                         </div>

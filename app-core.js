@@ -1,4 +1,4 @@
-// EDM学習アプリ - コア機能（Avicii風対応版）
+// EDM学習アプリ - コア機能（Avicii風対応版・18ステップ対応）
 class EDMCore {
     constructor() {
         this.state = {
@@ -18,7 +18,7 @@ class EDMCore {
             MELODY_TRACKS: ['bass', 'melody', 'chord', 'piano', 'pluck', 'strings'],
             TRANSITION_TRACKS: ['uplifter', 'riser', 'sweep'],
             STEPS_PER_PATTERN: 16,
-            TOTAL_STEPS: 20,
+            TOTAL_STEPS: 18,
             AUDIO: {
                 NOTE_LENGTH: '16n',
                 BEAT_DIVISION: 4,
@@ -684,10 +684,10 @@ class EDMCore {
     }
     
     createFullSongPattern() {
-        const sectionOrder = ['intro', 'preBuildup', 'buildup', 'preDrop', 'drop', 'preBreakdown', 'breakdown', 'preOutro', 'outro'];
+        const sectionOrder = ['intro', 'preBuildup', 'buildup', 'preDrop', 'drop', 'preBreakdown', 'breakdown', 'outro'];
         const sectionBars = {
             intro: 8, preBuildup: 1, buildup: 8, preDrop: 1, 
-            drop: 16, preBreakdown: 1, breakdown: 8, preOutro: 1, outro: 8
+            drop: 16, preBreakdown: 1, breakdown: 8, outro: 8
         };
         
         const fullPattern = [];
