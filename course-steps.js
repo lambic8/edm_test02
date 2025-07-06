@@ -1,4 +1,4 @@
-// EDM学習コース - ステップ定義（Avicii風対応版・18ステップ最適化）
+// EDM学習コース - ステップ定義（Avicii風対応版・18ステップ最適化・音響負荷軽減版）
 window.EDMCourseSteps = {
     steps: [
         // Phase 1: Piano Foundation (ステップ 1-4)
@@ -66,22 +66,22 @@ window.EDMCourseSteps = {
             validation: { type: "pattern", track: "clap", pattern: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0] }
         },
         
-        // Phase 4: Build to Drop (ステップ 9-10)
+        // Phase 4: Build to Drop (ステップ 9) - アップリフター除去
         {
             step: 9, section: "buildup", mode: "sequencer",
-            title: "ステップ 9: ビルドアップ - アップリフター追加",
-            description: "13, 15拍目にアップリフターを追加して、ドロップへの期待感を構築しましょう。Aviciiの楽曲では段階的な感情構築が重要な要素です。",
-            tracks: ["piano", "strings", "kick", "bass", "pluck", "snare", "hihat", "melody", "clap", "uplifter"],
-            validation: { type: "pattern", track: "uplifter", pattern: [0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0] }
+            title: "ステップ 9: ビルドアップ - 完成形維持",
+            description: "ビルドアップが完成しました！全ての楽器が調和し、次のドロップへの準備が整っています。現在のパターンのまま、Avicii風の段階的な感情構築を体験してください。音響負荷を軽減するため、エフェクト系楽器は次のステップで導入します。",
+            tracks: ["piano", "strings", "kick", "bass", "pluck", "snare", "hihat", "melody", "clap"],
+            validation: { type: "pattern", track: "melody", pattern: ["E4","D4","E4","F4","G4","F4","E4","D4","C4","D4","E4","F4","E4","D4","C4",0] }
         },
         
-        // Phase 4: Pre-Drop (ステップ 10)
+        // Phase 4: Pre-Drop (ステップ 10) - ライザー軽減
         {
             step: 10, section: "preDrop", mode: "sequencer",
-            title: "ステップ 10: プレドロップ - 最終テンション",
-            description: "ビルドアップから継承：キック、スネア、ハイハット、クラップ、ベース、プラックが維持されます。注意：ピアノ、ストリングス、メロディは除去され、次のドロップでの爆発的効果を演出します。14, 15, 16拍目にライザーを追加して、ドロップへの最終的な期待感を最高潮に高めましょう。この瞬間の緊張感が次の爆発的なドロップを際立たせます。",
+            title: "ステップ 10: プレドロップ - 最終テンション（音響最適化版）",
+            description: "ビルドアップから継承：キック、スネア、ハイハット、クラップ、ベース、プラックが維持されます。注意：ピアノ、ストリングス、メロディは除去され、次のドロップでの爆発的効果を演出します。16拍目のみにライザーを追加して、ドロップへの期待感を高めましょう。音響負荷軽減のため、ライザーは最小限に抑えています。",
             tracks: ["kick", "snare", "hihat", "clap", "bass", "pluck", "riser"],
-            validation: { type: "pattern", track: "riser", pattern: [0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1] }
+            validation: { type: "pattern", track: "riser", pattern: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1] }
         },
         
         // Phase 5: Euphoric Drop (ステップ 11-13)
@@ -94,17 +94,17 @@ window.EDMCourseSteps = {
         },
         {
             step: 12, section: "drop", mode: "sequencer",
-            title: "ステップ 12: ドロップ - ハーモニー構築",
-            description: "1, 5, 9, 13拍目にC4, F4, G4, C5のコード進行を追加して、豊かなハーモニーを構築しましょう。I-IV-V-I進行でAvicii特有の感動的な響きを実現します。",
+            title: "ステップ 12: ドロップ - シンプルハーモニー（音響最適化版）",
+            description: "音響負荷軽減のため、コード進行をシンプルに最適化します。1, 9拍目にC4, G4のパワーコード（2音）を配置して、Avicii特有の力強い響きを実現しましょう。この2音構成は「Levels」でも多用されている手法で、シンプルながら非常に効果的です。",
             tracks: ["kick", "snare", "hihat", "clap", "bass", "pluck", "piano", "chord"],
-            validation: { type: "pattern", track: "chord", pattern: ["C4",0,0,0,"F4",0,0,0,"G4",0,0,0,"C5",0,0,0] }
+            validation: { type: "pattern", track: "chord", pattern: ["C4",0,0,0,0,0,0,0,"G4",0,0,0,0,0,0,0] }
         },
         {
             step: 13, section: "drop", mode: "sequencer",
-            title: "ステップ 13: ドロップ - プラック強化",
-            description: "2, 4, 6, 8, 10, 12, 14, 16拍目（全ての偶数拍）にG4のプラックパターンを追加して、「Levels」のような中毒性のあるリズムを完成させましょう。連続するG4が楽曲に強烈なグルーヴを与えます。",
+            title: "ステップ 13: ドロップ - プラック最適化（音響負荷軽減版）",
+            description: "音響負荷を軽減するため、プラックパターンを最適化します。4, 8, 12, 16拍目（4拍子の強拍）にG4を配置して、「Levels」のようなグルーヴを維持しながら負荷を軽減しましょう。効率的なリズムパターンでAviciiサウンドの本質を体験できます。",
             tracks: ["kick", "snare", "hihat", "clap", "bass", "pluck", "piano", "chord"],
-            validation: { type: "pattern", track: "pluck", pattern: [0,"G4",0,"G4",0,"G4",0,"G4",0,"G4",0,"G4",0,"G4",0,"G4"] }
+            validation: { type: "pattern", track: "pluck", pattern: [0,0,0,"G4",0,0,0,"G4",0,0,0,"G4",0,0,0,"G4"] }
         },
         
         // Phase 6: Transition (ステップ 14)
@@ -148,9 +148,9 @@ window.EDMCourseSteps = {
         },
         {
             step: 18, section: "complete", mode: "preview",
-            title: "ステップ 18: 楽曲完成 - Avicii風感動的な旅路",
-            description: "🎉 おめでとうございます！美しいピアノアルペジオから始まり、感動的なドロップを経て、心に残る美しさで終わるAvicii風楽曲が完成しました。「Levels」「Wake Me Up」「Waiting for Love」と同じDNAを持つ、世界中で愛される音楽を作り上げました！フルソング再生ボタンで完成した楽曲を体験し、各セクションを切り替えて自然な移行を確認してみましょう。",
-            tracks: ["kick", "snare", "hihat", "clap", "bass", "melody", "chord", "piano", "pluck", "strings", "uplifter", "riser", "sweep"],
+            title: "ステップ 18: 楽曲完成 - Avicii風感動的な旅路（音響最適化版）",
+            description: "🎉 おめでとうございます！美しいピアノアルペジオから始まり、感動的なドロップを経て、心に残る美しさで終わるAvicii風楽曲が完成しました。音響負荷を最適化しながらも、「Levels」「Wake Me Up」「Waiting for Love」と同じDNAを持つ感動的な楽曲を実現しました！フルソング再生ボタンで完成した楽曲を体験し、各セクションを切り替えて自然な移行を確認してみましょう。",
+            tracks: ["kick", "snare", "hihat", "clap", "bass", "melody", "chord", "piano", "pluck", "strings", "riser", "sweep"],
             isComplete: true
         }
     ]
