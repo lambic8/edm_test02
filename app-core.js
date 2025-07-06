@@ -288,7 +288,7 @@ class EDMCore {
         const clapGain = new Tone.Gain(-8);  // 新規追加：控えめな音量
         synths.clap.chain(clapFilter, clapGain, Tone.Destination);
         
-        // 🎸 BASS - Avicii風の温かいベース（音量調整）
+        // 🎸 BASS - Avicii風の温かいベース（大幅音量軽減）
         synths.bass = new Tone.MonoSynth({
             oscillator: { 
                 type: "sawtooth"
@@ -296,29 +296,29 @@ class EDMCore {
             envelope: { 
                 attack: 0.01, 
                 decay: 0.6, 
-                sustain: 0.5, 
+                sustain: 0.4,  // 0.5 → 0.4に軽減
                 release: 1.5
             },
             filter: { 
-                frequency: 300, 
+                frequency: 280,  // 300 → 280に軽減（少し暗めに）
                 type: "lowpass", 
                 rolloff: -12,
-                Q: 6
+                Q: 5  // 6 → 5に軽減
             },
             filterEnvelope: {
                 attack: 0.02,
                 decay: 0.4,
-                sustain: 0.6,
+                sustain: 0.5,  // 0.6 → 0.5に軽減
                 release: 1.0,
-                baseFrequency: 150,
-                octaves: 2
+                baseFrequency: 140,  // 150 → 140に軽減
+                octaves: 1.8  // 2 → 1.8に軽減
             }
         });
         
-        const bassGain = new Tone.Gain(-5);  // -3 → -5に軽減
+        const bassGain = new Tone.Gain(-7);  // -5 → -7にさらに軽減
         synths.bass.chain(bassGain, Tone.Destination);
         
-        // 🎵 MELODY - 感動的なリードシンセ（音量調整）
+        // 🎵 MELODY - 感動的なリードシンセ（大幅音量軽減）
         synths.melody = new Tone.MonoSynth({
             oscillator: { 
                 type: "sawtooth"
@@ -326,26 +326,26 @@ class EDMCore {
             envelope: { 
                 attack: 0.05, 
                 decay: 0.4, 
-                sustain: 0.7, 
+                sustain: 0.6,  // 0.7 → 0.6に軽減
                 release: 1.0
             },
             filter: { 
-                frequency: 2500, 
+                frequency: 2200,  // 2500 → 2200に軽減（少し暗めに）
                 type: "lowpass", 
                 rolloff: -12,
-                Q: 2
+                Q: 1.8  // 2 → 1.8に軽減
             },
             filterEnvelope: {
                 attack: 0.1,
                 decay: 0.3,
-                sustain: 0.8,
+                sustain: 0.7,  // 0.8 → 0.7に軽減
                 release: 0.8,
-                baseFrequency: 1000,
-                octaves: 2
+                baseFrequency: 900,  // 1000 → 900に軽減
+                octaves: 1.8  // 2 → 1.8に軽減
             }
         });
         
-        const melodyGain = new Tone.Gain(-7);  // -5 → -7に軽減
+        const melodyGain = new Tone.Gain(-9);  // -7 → -9にさらに軽減
         synths.melody.chain(melodyGain, this.effects.reverb);
         
         // 🎹 CHORD - 温かいコードシンセ（音量調整）
@@ -439,34 +439,34 @@ class EDMCore {
         const stringsGain = new Tone.Gain(-10);  // -8 → -10に軽減（最も控えめ）
         synths.strings.chain(stringsGain, this.effects.reverb);
         
-        // 🚀 UPLIFTER - エネルギッシュなアップリフター（音量調整）
+        // 🚀 UPLIFTER - エネルギッシュなアップリフター（雑音対策・大幅簡素化）
         synths.uplifter = new Tone.MonoSynth({
             oscillator: { 
-                type: "sawtooth"
+                type: "sine"  // sawtooth → sine に変更（雑音軽減）
             },
             envelope: { 
-                attack: 0.1, 
-                decay: 0.2, 
-                sustain: 0.8, 
-                release: 0.5
+                attack: 0.05,  // 0.1 → 0.05に短縮
+                decay: 0.3,    // 0.2 → 0.3に延長
+                sustain: 0.6,  // 0.8 → 0.6に軽減
+                release: 0.4   // 0.5 → 0.4に短縮
             },
             filter: { 
-                frequency: 800, 
+                frequency: 1200,  // 800 → 1200に上昇（明るく）
                 type: "lowpass", 
                 rolloff: -12,
-                Q: 6
+                Q: 3  // 6 → 3に軽減（雑音対策）
             },
             filterEnvelope: {
-                attack: 0.3,
-                decay: 0.1,
-                sustain: 0.7,
-                release: 0.4,
-                baseFrequency: 400,
-                octaves: 3
+                attack: 0.2,  // 0.3 → 0.2に短縮
+                decay: 0.05,  // 0.1 → 0.05に短縮
+                sustain: 0.5, // 0.7 → 0.5に軽減
+                release: 0.3, // 0.4 → 0.3に短縮
+                baseFrequency: 600,  // 400 → 600に上昇
+                octaves: 2  // 3 → 2に軽減（雑音対策）
             }
         });
         
-        const uplifterGain = new Tone.Gain(-6);  // 新規追加：控えめな音量
+        const uplifterGain = new Tone.Gain(-10);  // -6 → -10に大幅軽減
         synths.uplifter.chain(uplifterGain, Tone.Destination);
         
         // 📈 RISER - 強力なライザー（音量調整）
@@ -1054,13 +1054,13 @@ class EDMCore {
                     snare: "-6dB",
                     hihat: "-8dB", 
                     clap: "-8dB",
-                    bass: "-5dB",
-                    melody: "-7dB",
+                    bass: "-7dB (reduced from -5dB)",
+                    melody: "-9dB (reduced from -7dB)",
                     chord: "-8dB", 
                     piano: "-6dB",
                     pluck: "-4dB",
                     strings: "-10dB (most reduced)",
-                    uplifter: "-6dB",
+                    uplifter: "-10dB (noise reduction)",
                     riser: "-6dB",
                     sweep: "-6dB"
                 }
