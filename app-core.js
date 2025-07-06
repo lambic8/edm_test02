@@ -1,4 +1,4 @@
-// EDM学習アプリ - コア機能（Avicii風対応版・18ステップ対応）
+// EDM学習アプリ - コア機能（Avicii風対応版・18ステップ対応・音量最適化版）
 class EDMCore {
     constructor() {
         this.state = {
@@ -163,7 +163,7 @@ class EDMCore {
             this.synths = await this.createSynths();
             this.transport.bpm.value = this.state.bpm;
             this.updateState({ audioInitialized: true });
-            console.log("🎵 Avicii-style audio system initialized");
+            console.log("🎵 Avicii-style audio system initialized with optimized volumes");
             return true;
         } catch (error) {
             console.error("Audio init failed:", error);
@@ -174,23 +174,23 @@ class EDMCore {
     async createEffects() {
         const effects = {};
         
-        // Avicii風エフェクト
+        // Avicii風エフェクト（音量最適化）
         effects.reverb = new Tone.Reverb({
-            decay: 3.0,  // より深いリバーブ
-            wet: 0.3
+            decay: 3.0,
+            wet: 0.25  // 0.3 → 0.25に軽減
         });
         
         effects.delay = new Tone.PingPongDelay({
             delayTime: "8n",
-            feedback: 0.35,
-            wet: 0.2
+            feedback: 0.3,  // 0.35 → 0.3に軽減
+            wet: 0.15       // 0.2 → 0.15に軽減
         });
         
         effects.chorus = new Tone.Chorus({
             frequency: 2,
             delayTime: 3.5,
-            depth: 0.7,
-            wet: 0.3
+            depth: 0.6,     // 0.7 → 0.6に軽減
+            wet: 0.25       // 0.3 → 0.25に軽減
         });
         
         // エフェクトを初期化（非同期）
@@ -207,7 +207,7 @@ class EDMCore {
     async createSynths() {
         const synths = {};
         
-        // 🥁 KICK - Avicii風の深いキック
+        // 🥁 KICK - Avicii風の深いキック（音量維持）
         synths.kick = new Tone.MembraneSynth({
             pitchDecay: 0.03,
             octaves: 8,
@@ -222,7 +222,7 @@ class EDMCore {
             }
         }).toDestination();
         
-        // 🥁 SNARE - クリアで鋭いスネア
+        // 🥁 SNARE - クリアで鋭いスネア（音量調整）
         synths.snare = new Tone.NoiseSynth({
             noise: { 
                 type: "white"
@@ -241,9 +241,10 @@ class EDMCore {
             rolloff: -12
         });
         
-        synths.snare.chain(snareFilter, Tone.Destination);
+        const snareGain = new Tone.Gain(-6);  // -5 → -6に軽減
+        synths.snare.chain(snareFilter, snareGain, Tone.Destination);
         
-        // 🥁 HIHAT - 明るいハイハット
+        // 🥁 HIHAT - 明るいハイハット（新規音量設定）
         synths.hihat = new Tone.NoiseSynth({
             noise: { 
                 type: "white"
@@ -262,9 +263,10 @@ class EDMCore {
             rolloff: -24
         });
         
-        synths.hihat.chain(hihatFilter, Tone.Destination);
+        const hihatGain = new Tone.Gain(-8);  // 新規追加：控えめな音量
+        synths.hihat.chain(hihatFilter, hihatGain, Tone.Destination);
         
-        // 🥁 CLAP - パワフルなクラップ
+        // 🥁 CLAP - パワフルなクラップ（大幅音量軽減）
         synths.clap = new Tone.NoiseSynth({
             noise: { 
                 type: "white"
@@ -283,9 +285,10 @@ class EDMCore {
             Q: 3
         });
         
-        synths.clap.chain(clapFilter, Tone.Destination);
+        const clapGain = new Tone.Gain(-8);  // 新規追加：控えめな音量
+        synths.clap.chain(clapFilter, clapGain, Tone.Destination);
         
-        // 🎸 BASS - Avicii風の温かいベース
+        // 🎸 BASS - Avicii風の温かいベース（音量調整）
         synths.bass = new Tone.MonoSynth({
             oscillator: { 
                 type: "sawtooth"
@@ -312,10 +315,10 @@ class EDMCore {
             }
         });
         
-        const bassGain = new Tone.Gain(-3);
+        const bassGain = new Tone.Gain(-5);  // -3 → -5に軽減
         synths.bass.chain(bassGain, Tone.Destination);
         
-        // 🎵 MELODY - 感動的なリードシンセ
+        // 🎵 MELODY - 感動的なリードシンセ（音量調整）
         synths.melody = new Tone.MonoSynth({
             oscillator: { 
                 type: "sawtooth"
@@ -342,10 +345,10 @@ class EDMCore {
             }
         });
         
-        const melodyGain = new Tone.Gain(-5);
+        const melodyGain = new Tone.Gain(-7);  // -5 → -7に軽減
         synths.melody.chain(melodyGain, this.effects.reverb);
         
-        // 🎹 CHORD - 温かいコードシンセ
+        // 🎹 CHORD - 温かいコードシンセ（音量調整）
         synths.chord = new Tone.PolySynth({
             voice: Tone.MonoSynth,
             options: {
@@ -367,10 +370,10 @@ class EDMCore {
             }
         });
         
-        const chordGain = new Tone.Gain(-6);
+        const chordGain = new Tone.Gain(-8);  // -6 → -8に軽減
         synths.chord.chain(chordGain, this.effects.chorus);
         
-        // 🎹 PIANO - Avicii特有の温かいピアノ
+        // 🎹 PIANO - Avicii特有の温かいピアノ（音量調整）
         synths.piano = new Tone.PolySynth({
             voice: Tone.MonoSynth,
             options: {
@@ -392,17 +395,17 @@ class EDMCore {
             }
         });
         
-        const pianoGain = new Tone.Gain(-4);
+        const pianoGain = new Tone.Gain(-6);  // -4 → -6に軽減
         synths.piano.chain(pianoGain, this.effects.reverb);
         
-        // ✨ PLUCK - 「Levels」風プラックシンセ
+        // ✨ PLUCK - 「Levels」風プラックシンセ（音量調整）
         synths.pluck = new Tone.PluckSynth({
             attackNoise: 1,
             dampening: 4000,
             resonance: 0.9
         });
         
-        const pluckGain = new Tone.Gain(-2);
+        const pluckGain = new Tone.Gain(-4);  // -2 → -4に軽減
         const pluckFilter = new Tone.Filter({
             frequency: 3000,
             type: "lowpass",
@@ -411,7 +414,7 @@ class EDMCore {
         
         synths.pluck.chain(pluckFilter, pluckGain, this.effects.delay);
         
-        // 🎻 STRINGS - 感動的なストリングス
+        // 🎻 STRINGS - 感動的なストリングス（大幅音量軽減）
         synths.strings = new Tone.PolySynth({
             voice: Tone.MonoSynth,
             options: {
@@ -419,10 +422,10 @@ class EDMCore {
                     type: "sawtooth"
                 },
                 envelope: { 
-                    attack: 1.0,  // ゆっくりとした立ち上がり
+                    attack: 1.0,
                     decay: 1.5, 
                     sustain: 0.8, 
-                    release: 3.0  // 長いリリース
+                    release: 3.0
                 },
                 filter: { 
                     frequency: 1800, 
@@ -433,10 +436,10 @@ class EDMCore {
             }
         });
         
-        const stringsGain = new Tone.Gain(-8);
+        const stringsGain = new Tone.Gain(-10);  // -8 → -10に軽減（最も控えめ）
         synths.strings.chain(stringsGain, this.effects.reverb);
         
-        // 🚀 UPLIFTER - エネルギッシュなアップリフター
+        // 🚀 UPLIFTER - エネルギッシュなアップリフター（音量調整）
         synths.uplifter = new Tone.MonoSynth({
             oscillator: { 
                 type: "sawtooth"
@@ -461,15 +464,18 @@ class EDMCore {
                 baseFrequency: 400,
                 octaves: 3
             }
-        }).toDestination();
+        });
         
-        // 📈 RISER - 強力なライザー
+        const uplifterGain = new Tone.Gain(-6);  // 新規追加：控えめな音量
+        synths.uplifter.chain(uplifterGain, Tone.Destination);
+        
+        // 📈 RISER - 強力なライザー（音量調整）
         synths.riser = new Tone.NoiseSynth({
             noise: { 
                 type: "white"
             },
             envelope: { 
-                attack: 1.5,  // より長いアタック
+                attack: 1.5,
                 decay: 0.1, 
                 sustain: 0.9, 
                 release: 1.0
@@ -494,7 +500,7 @@ class EDMCore {
         
         riserFilterEnv.connect(riserFilter.frequency);
         
-        const riserGain = new Tone.Gain(-2);
+        const riserGain = new Tone.Gain(-6);  // -2 → -6に軽減
         synths.riser.chain(riserFilter, riserGain, this.effects.reverb);
         
         const originalRiserTrigger = synths.riser.triggerAttackRelease.bind(synths.riser);
@@ -503,7 +509,7 @@ class EDMCore {
             return originalRiserTrigger(duration, time);
         };
         
-        // 🌊 SWEEP - スムーズなスイープ
+        // 🌊 SWEEP - スムーズなスイープ（音量調整）
         synths.sweep = new Tone.MonoSynth({
             oscillator: { 
                 type: "sine"
@@ -530,9 +536,10 @@ class EDMCore {
             }
         });
         
-        synths.sweep.connect(this.effects.delay);
+        const sweepGain = new Tone.Gain(-6);  // 新規追加：控えめな音量
+        synths.sweep.chain(sweepGain, this.effects.delay);
         
-        console.log("🎛️ Avicii-style synths created successfully");
+        console.log("🎛️ Avicii-style synths created with optimized volumes");
         return synths;
     }
     
@@ -1041,7 +1048,22 @@ class EDMCore {
                     bpm: this.state.bpm
                 },
                 effects: Object.keys(this.effects),
-                synths: Object.keys(this.synths)
+                synths: Object.keys(this.synths),
+                volumeOptimization: {
+                    kick: "0dB (baseline)",
+                    snare: "-6dB",
+                    hihat: "-8dB", 
+                    clap: "-8dB",
+                    bass: "-5dB",
+                    melody: "-7dB",
+                    chord: "-8dB", 
+                    piano: "-6dB",
+                    pluck: "-4dB",
+                    strings: "-10dB (most reduced)",
+                    uplifter: "-6dB",
+                    riser: "-6dB",
+                    sweep: "-6dB"
+                }
             };
         } catch (error) {
             console.error('Debug info generation failed:', error);
@@ -1051,3 +1073,4 @@ class EDMCore {
 }
 
 window.EDMCore = EDMCore;
+            
